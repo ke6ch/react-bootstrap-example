@@ -16,12 +16,12 @@ export default function Index() {
     if (email === '' || password === '') {
       setShow(true)
     } else {
-      fetch('http://localhost:5000/')
+      fetch(`${process.env.REACT_APP_BASE_URL}/login`)
         .then((res) => res.json())
         .then((data) =>
           data.language === 'python' ? history.push('/blog') : setShow(true)
         )
-        .catch((err) => setShow(true))
+        .catch(() => setShow(true))
     }
   }
 
