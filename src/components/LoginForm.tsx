@@ -9,7 +9,7 @@ interface Props {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
 }
 
-export default function Login(props: Props) {
+export default function LoginForm(props: Props) {
   const { email, password, setEmail, setPassword, handleSubmit } = props
 
   return (

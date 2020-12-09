@@ -1,46 +1,18 @@
-import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import Layout from '../components/Layout'
-import Login from '../components/Login'
-import Alert from '../components/AlertMessage'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import logo from './logo.svg'
+import './App.css'
 
 export default function Index() {
-  const [email, setEmail] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
-  const [show, setShow] = useState<boolean>(false)
-  const history = useHistory()
-
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-
-    if (email === '' || password === '') {
-      setShow(true)
-    } else {
-      fetch(`${process.env.REACT_APP_BASE_URL}/login`)
-        .then((res) => res.json())
-        .then((data) =>
-          data.language === 'python' ? history.push('/blog') : setShow(true)
-        )
-        .catch(() => setShow(true))
-    }
-  }
-
   return (
-    <Layout>
-      <div className="form-signin-wrapper d-flex flex-column justify-content-center align-items-center">
-        <Alert
-          message="Incorrect username or password."
-          show={show}
-          setShow={setShow}
-        />
-        <Login
-          email={email}
-          setEmail={setEmail}
-          password={password}
-          setPassword={setPassword}
-          handleSubmit={handleSubmit}
-        />
-      </div>
-    </Layout>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/pages/Index.tsx</code> and save to reload.
+        </p>
+        <Link to="/login">Go to Login Page</Link>
+      </header>
+    </div>
   )
 }
